@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable pane-layout': 'pane-layout:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'pane-layout'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'pane-layout:toggle' }
+      ]
+    ]
+  }
+]

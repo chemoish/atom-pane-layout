@@ -1,0 +1,20 @@
+{
+  "name": "pane-layout",
+  "main": "./lib/pane-layout",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "activationEvents": [
+    "pane-layout:toggle-1",
+    "pane-layout:toggle-2",
+    "pane-layout:toggle-3",
+    "pane-layout:toggle-4",
+    "pane-layout:toggle-5"
+  ],
+  "repository": "https://github.com/atom/pane-layout",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}
