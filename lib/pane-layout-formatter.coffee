@@ -1,94 +1,88 @@
 module.exports =
+  activateItem: (uri) ->
+    pane = atom.workspace.paneForUri uri
+
+    pane.activate()
+
+    pane.activateItemForUri uri
+
   addHorizontalPanes: (pane, number_of_panes) ->
-    return unless pane?
+    pane.splitRight() for [0..number_of_panes - 1]
 
-    i = 0
+  # TODO: pane.getNextPane() seems to be buggy
+  addWindowPanes: ->
+    open_panes = @getCurrentPanes()
 
-    while i < number_of_panes
-      pane.splitRight()
+    open_panes[0].splitRight()
 
-      i++
+    open_panes = @getCurrentPanes()
 
-  addWindowPanes: (pane) ->
-    if pane?
-      pane.splitRight()
-      pane.getNextPane().splitDown()
-      pane.splitDown()
+    open_panes[1].splitDown()
+
+    open_panes[0].splitDown()
 
   formatLayout: (columns) ->
-    panes = atom.workspaceView.getPanes()
-    number_of_panes = panes.length
+    open_panes = @getCurrentPanes()
 
+    number_of_panes = open_panes.length
+
+    # if there are 4 panes we don't know the layout and must recalculate
+    # otherwise skip if the layout is the same
     return if columns is number_of_panes and number_of_panes < 4
 
+    # get current active pane
+    active_pane = atom.workspace.getActivePaneItem()
+
+    # get current active item
+    active_pane_uri = active_pane.getUri()
+
+    if columns in [4, 5]
+      @removeEmptyPanes()
+
+      @addWindowPanes() if columns is 5
+
+      @addHorizontalPanes open_panes[0], 3 if columns is 4
+
+      panes = @getCurrentPanes()
+
+      for open_pane, i in open_panes
+        continue if i is 0
+
+        @movePane open_pane, panes[i]
+
     # 4 panes -> 3 panes
-    if number_of_panes > columns
-      newPaneIndex = columns - 1
+    else if number_of_panes > columns
+      new_pane_index = columns - 1
+
+      @removeEmptyPanes()
+
+      @addHorizontalPanes open_panes[0], new_pane_index
 
       panes = atom.workspaceView.getPanes()
 
-      for pane in panes
-        pane.remove() if pane.getItems().length is 0
+      for open_pane, i in open_panes
+        continue if i is 0
 
-      panes = atom.workspaceView.getPanes()
-
-      _panes = []
-      _panes.push panes[0] if panes[0]?
-      _panes.push panes[1] if panes[1]?
-      _panes.push panes[2] if panes[2]?
-      _panes.push panes[3] if panes[3]?
-
-      @addHorizontalPanes panes[0], newPaneIndex
-
-      panes = atom.workspaceView.getPanes()
-
-      return if _panes.length <= newPaneIndex
-
-      i = 1
-
-      while i <= _panes.length - 1
-        if i <= newPaneIndex
-          @movePane _panes[i], panes[i]
+        if i <= new_pane_index
+          @movePane open_pane, panes[i]
         else
-          @movePane _panes[i], panes[newPaneIndex]
-
-        i += 1
-
-    else if columns is 4
-      pane1 = atom.workspaceView.getPanes()[0]
-      pane2 = panes[1]
-      pane3 = panes[2]
-      pane4 = panes[3]
-
-      @addHorizontalPanes pane1, 3
-
-      panes = atom.workspaceView.getPanes()
-
-      @movePane pane2, panes[1] if pane2?
-      @movePane pane3, panes[2] if pane3?
-      @movePane pane4, panes[3] if pane4?
-
-    # 2 panes -> "5" panes
-    else if columns is 5
-      pane1 = atom.workspaceView.getPanes()[0]
-      pane2 = panes[1]
-      pane3 = panes[2]
-      pane4 = panes[3]
-
-      @addWindowPanes pane1
-
-      panes = atom.workspaceView.getPanes()
-
-      @movePane pane2, panes[1] if pane2?
-      @movePane pane3, panes[2] if pane3?
-      @movePane pane4, panes[3] if pane4?
+          @movePane open_pane, panes[new_pane_index]
 
     # 2 panes -> 4 panes
-    else
-      last_pane           = panes[number_of_panes - 1]
+    else if columns > number_of_panes
       number_of_new_panes = columns - number_of_panes
 
+      last_pane = open_panes[open_panes.length - 1]
+
       @addHorizontalPanes last_pane, number_of_new_panes
+
+    # set active item with previously active item
+    @activateItem active_pane_uri
+
+  getCurrentPanes: ->
+    panes = atom.workspaceView.getPanes()
+
+    return (pane for pane in panes)
 
   movePane: (current_pane, target_pane) ->
     items = current_pane.getItems()
@@ -101,6 +95,8 @@ module.exports =
     for item in items
       current_pane.moveItemToPane item, target_pane, target_pane.getItems().length
 
-  removePane: (pane) ->
-    if pane?
-      pane.remove()
+  removeEmptyPanes: ->
+    panes = atom.workspaceView.getPanes()
+
+    for pane in panes
+      pane.remove() if pane.getItems().length is 0
