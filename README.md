@@ -1,67 +1,24 @@
-# pane-layout package
+# Atom.io – Pane Layout Package
 
-A short description of your package.
+> Set the layout of your atom editor with `cmd-alt-1`...
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![pane-layout](https://raw.github.com/chemoish/atom-pane-layout/master/demo.gif)
 
-# adding panes
-2 -> 4 (filled)
+## Hotkeys
 
-- ? remove empty panes (extra step)
-- get last pane
-- 4 - 2
-- add 2 pane
-- [x][x][][]
+```coffeescript
+# one column
+cmd-alt-1
 
-2 -> 4 (unfilled)
+# two column
+cmd-alt-2
 
-- ? remove empty panes (extra step)
-- get last pane
-- 4 - 2
-- add 2 pane
-- [x][][][]
+# three column
+cmd-alt-3
 
-# changing layout
-4 -> 5 (filled)
+# four column
+cmd-alt-4
 
-- ? remove empty panes
-- save all open panes
-- create new window layout (1 +)
-- for each saved panes
-  - remove if empty (skip if done above)
-  - move saved pane to open slot
-
-4 -> 5 (unfilled)
-
-- ? remove empty panes
-- save all open panes
-- create new window layout (1 +)
-- for each saved panes
-  - remove if empty (skip if done above)
-
-5 -> 4 (filled)
-
-- ? remove empty panes
-- save all open panes
-- create new horizontal layout (1 +)
-- for each saved panes
-  - remove if empty (skip if done above)
-  - move saved pane to open slot
-
-5 -> 4 (unfilled)
-
-# removing panes
-4 -> 2 (filled)
-
-- 4 - 2 (get last pane index)
-- ? remove empty panes (would save in iterations)
-- save all open panes
-- create new horizontal layout (1 +)
-- for each saved panes
-  - remove if empty (skip if done above)
-  - move saved panes to open pane
-  - move saved panes to last pane
-
-4 -> 2 (unfilled)
-
-- ? remove empty panes
+# four column (square)
+cmd-alt-5
+```

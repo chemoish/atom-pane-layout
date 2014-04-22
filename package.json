@@ -1,8 +1,8 @@
 {
-  "name": "pane-layout",
+  "name": "pane-layout-plus",
   "main": "./lib/pane-layout",
   "version": "0.0.0",
-  "description": "A short description of your package",
+  "description": "Can has switch the layout of your panes.",
   "activationEvents": [
     "pane-layout:column-1",
     "pane-layout:column-2",
@@ -10,7 +10,7 @@
     "pane-layout:column-4",
     "pane-layout:square"
   ],
-  "repository": "https://github.com/atom/pane-layout",
+  "repository": "https://github.com/chemoish/atom-pane-layout",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
