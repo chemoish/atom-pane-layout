@@ -1,5 +1,7 @@
 module.exports =
   activateItem: (uri) ->
+    return unless uri?
+
     pane = atom.workspace.paneForUri uri
 
     pane.activate()
@@ -36,10 +38,10 @@ module.exports =
     return if columns is number_of_panes and number_of_panes < 4
 
     # get current active pane
-    active_pane = atom.workspace.getActivePaneItem()
+    active_item = atom.workspace.getActivePaneItem()
 
     # get current active item
-    active_pane_uri = active_pane.getUri()
+    active_item_uri = active_item?.getUri()
 
     if columns in [4, 5]
       @removeEmptyPanes()
@@ -82,7 +84,7 @@ module.exports =
       @addHorizontalPanes last_pane, number_of_new_panes
 
     # set active item with previously active item
-    @activateItem active_pane_uri
+    @activateItem active_item_uri
 
   getCurrentPanes: ->
     panes = atom.workspaceView.getPanes()
