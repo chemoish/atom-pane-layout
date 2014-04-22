@@ -142,11 +142,6 @@ module.exports =
   movePane: (current_pane, target_pane) ->
     items = current_pane.getItems()
 
-    if items.length is 0
-      current_pane.remove()
-
-      return
-
     for item in items
       current_pane.moveItemToPane item, target_pane, target_pane.getItems().length
 
