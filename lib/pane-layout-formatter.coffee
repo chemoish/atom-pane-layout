@@ -44,13 +44,13 @@ module.exports =
   addWindowPanes: ->
     open_panes = @getCurrentPanes()
 
+    open_panes[0].splitDown()
+
     open_panes[0].splitRight()
 
     open_panes = @getCurrentPanes()
 
-    open_panes[1].splitDown()
-
-    open_panes[0].splitDown()
+    open_panes[2].splitRight()
 
   ###
   @name Format Layout
