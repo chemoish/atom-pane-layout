@@ -66,9 +66,10 @@ module.exports =
 
     number_of_panes = open_panes.length
 
-    # if there are 4 panes we don't know the layout and must recalculate
-    # otherwise skip if the layout is the same
-    return if columns is number_of_panes and number_of_panes < 4
+    # skip if the layout is the same
+    return if (columns is 5 and open_panes[0]?.model?.parent?.children?.length is 2) or
+              (columns is 4 and open_panes[0]?.model?.parent?.children?.length is 4) or
+              (columns < 4 and columns is number_of_panes)
 
     # get current active pane
     active_item = atom.workspace.getActivePaneItem()
