@@ -1,4 +1,12 @@
 module.exports =
+  ###
+  @name Activate Item
+  @description
+  Activate a given item from a uri (Select the file that was previously selected).
+
+  @param {String} uri
+  ###
+
   activateItem: (uri) ->
     return unless uri?
 
@@ -8,6 +16,15 @@ module.exports =
 
     pane.activateItemForUri uri
 
+  ###
+  @name Add Horizontal Panes
+  @description
+  For a given pane, add a number of panes after it.
+
+  @params {Object} pane Pane to start from
+  @params {Number} number_of_panes
+  ###
+
   addHorizontalPanes: (pane, number_of_panes) ->
     i = 0
 
@@ -16,7 +33,14 @@ module.exports =
 
       i++
 
-  # TODO: pane.getNextPane() seems to be buggy
+  ###
+  @name Add Wintdow Panes
+  @description
+  Add a window panes to the given workspace.
+
+  @todo: pane.getNextPane() seems to be buggy
+  ###
+
   addWindowPanes: ->
     open_panes = @getCurrentPanes()
 
@@ -27,6 +51,15 @@ module.exports =
     open_panes[1].splitDown()
 
     open_panes[0].splitDown()
+
+  ###
+  @name Format Layout
+  @description
+  Format the pane layout based on the number of columns provided. Then select
+  the pane item that was previously active.
+
+  @params {Number} columns
+  ###
 
   formatLayout: (columns) ->
     open_panes = @getCurrentPanes()
@@ -57,7 +90,6 @@ module.exports =
 
         @movePane open_pane, panes[i]
 
-    # 4 panes -> 3 panes
     else if number_of_panes > columns
       new_pane_index = columns - 1
 
@@ -75,7 +107,6 @@ module.exports =
         else
           @movePane open_pane, panes[new_pane_index]
 
-    # 2 panes -> 4 panes
     else if columns > number_of_panes
       number_of_new_panes = columns - number_of_panes
 
@@ -86,10 +117,27 @@ module.exports =
     # set active item with previously active item
     @activateItem active_item_uri
 
+  ###
+  @name Get Current Panes
+  @description
+  Return the current panes of the workspace.
+
+  @returns {Array} panes
+  ###
+
   getCurrentPanes: ->
     panes = atom.workspaceView.getPanes()
 
     return (pane for pane in panes)
+
+  ###
+  @name Move Pane
+  @description
+  Move a panes items from one location to another.
+
+  @params {Object} current_pane
+  @params {Object} target_pane
+  ###
 
   movePane: (current_pane, target_pane) ->
     items = current_pane.getItems()
@@ -101,6 +149,12 @@ module.exports =
 
     for item in items
       current_pane.moveItemToPane item, target_pane, target_pane.getItems().length
+
+  ###
+  @name Remove Empty Panes
+  @description
+  Remove an pane that does not contain any items.
+  ###
 
   removeEmptyPanes: ->
     panes = atom.workspaceView.getPanes()
