@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "description": "A short description of your package",
   "activationEvents": [
-    "pane-layout:toggle-1",
-    "pane-layout:toggle-2",
-    "pane-layout:toggle-3",
-    "pane-layout:toggle-4",
-    "pane-layout:toggle-5"
+    "pane-layout:column-1",
+    "pane-layout:column-2",
+    "pane-layout:column-3",
+    "pane-layout:column-4",
+    "pane-layout:square"
   ],
   "repository": "https://github.com/atom/pane-layout",
   "license": "MIT",

@@ -8,8 +8,8 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 '.workspace':
-  'cmd-alt-1': 'pane-layout:toggle-1'
-  'cmd-alt-2': 'pane-layout:toggle-2'
-  'cmd-alt-3': 'pane-layout:toggle-3'
-  'cmd-alt-4': 'pane-layout:toggle-4'
-  'cmd-alt-5': 'pane-layout:toggle-5'
+  'cmd-alt-1': 'pane-layout:column-1'
+  'cmd-alt-2': 'pane-layout:column-2'
+  'cmd-alt-3': 'pane-layout:column-3'
+  'cmd-alt-4': 'pane-layout:column-4'
+  'cmd-alt-5': 'pane-layout:square'
