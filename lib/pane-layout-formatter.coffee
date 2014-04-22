@@ -7,7 +7,12 @@ module.exports =
     pane.activateItemForUri uri
 
   addHorizontalPanes: (pane, number_of_panes) ->
-    pane.splitRight() for [0..number_of_panes - 1]
+    i = 0
+
+    while i < number_of_panes
+      pane.splitRight()
+
+      i++
 
   # TODO: pane.getNextPane() seems to be buggy
   addWindowPanes: ->
