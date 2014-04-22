@@ -154,5 +154,7 @@ module.exports =
   removeEmptyPanes: ->
     panes = atom.workspaceView.getPanes()
 
-    for pane in panes
+    for pane, i in panes
+      continue if i is 0
+
       pane.remove() if pane.getItems().length is 0
