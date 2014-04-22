@@ -1,3 +1,5 @@
+{WorkspaceView} = require 'atom'
+
 PaneLayout = require '../lib/pane-layout'
 
 # Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
@@ -5,25 +7,33 @@ PaneLayout = require '../lib/pane-layout'
 # To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
 # or `fdescribe`). Remove the `f` to unfocus the block.
 
-describe "PaneLayout", ->
-  activationPromise = null
-
+describe "PaneLayout:", ->
   beforeEach ->
     atom.workspaceView = new WorkspaceView
-    activationPromise = atom.packages.activatePackage('paneLayout')
+    atom.workspaceView.openSync()
 
-  describe "when the pane-layout:toggle event is triggered", ->
-    it "attaches and then detaches the view", ->
-      expect(atom.workspaceView.find('.pane-layout')).not.toExist()
+  describe 'Columns:', ->
+    it 'should set layout to 1 column', ->
+      PaneLayout.layout 1
 
-      # This is an activation event, triggering it will cause the package to be
-      # activated.
-      atom.workspaceView.trigger 'pane-layout:toggle'
+      expect(atom.workspaceView.getPanes().length).toBe 1
 
-      waitsForPromise ->
-        activationPromise
+    it 'should set layout to 2 column', ->
+      PaneLayout.layout 2
 
-      runs ->
-        expect(atom.workspaceView.find('.pane-layout')).toExist()
-        atom.workspaceView.trigger 'pane-layout:toggle'
-        expect(atom.workspaceView.find('.pane-layout')).not.toExist()
+      expect(atom.workspaceView.getPanes().length).toBe 2
+
+    it 'should set layout to 3 column', ->
+      PaneLayout.layout 3
+
+      expect(atom.workspaceView.getPanes().length).toBe 3
+
+    it 'should set layout to 4 column', ->
+      PaneLayout.layout 4
+
+      expect(atom.workspaceView.getPanes().length).toBe 4
+
+    it 'should set layout to square', ->
+      PaneLayout.layout 5
+
+      expect(atom.workspaceView.getPanes().length).toBe 4
