@@ -7,7 +7,7 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-'.workspace':
+'.editor':
   'cmd-alt-1': 'pane-layout:column-1'
   'cmd-alt-2': 'pane-layout:column-2'
   'cmd-alt-3': 'pane-layout:column-3'
