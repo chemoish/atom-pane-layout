@@ -72,7 +72,10 @@ module.exports =
     # get current active item
     active_item_uri = active_item?.getUri()
 
+    # TODO: consider refactoring these methods
     if columns in [4, 5]
+      new_pane_index = 3
+
       @removeEmptyPanes()
 
       @addWindowPanes() if columns is 5
@@ -84,7 +87,10 @@ module.exports =
       for open_pane, i in open_panes
         continue if i is 0
 
-        @movePane open_pane, panes[i]
+        if i <= new_pane_index
+          @movePane open_pane, panes[i]
+        else
+          @movePane open_pane, panes[new_pane_index]
 
     else if number_of_panes > columns
       new_pane_index = columns - 1
