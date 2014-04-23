@@ -7,8 +7,9 @@
 ## Features
 
  - When a layout is chosen that increases the pane count, any additional panes will be left empty.
- - When a layout is chosen that decreases the pane count, any left over panes will be collapsed into the last one.
- - When switching to a layout from a custom layout, any left over panes will be collapsed into the last one.
+ - When a layout is chosen that decreases the pane count, any left over panes will be collapsed into the last available pane.
+ - When a layout is chosen and a custom layout is already in place, any left over panes will be collapsed into the last available pane.
+ - When a layout is changed that causes panes to collapse, stay focused on the active file – iff the file is in the file system.
 
 ## TODO
 
