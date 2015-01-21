@@ -99,7 +99,7 @@ module.exports =
 
       @addHorizontalPanes open_panes[0], new_pane_index
 
-      panes = atom.workspaceView.getPaneViews()
+      panes = atom.workspace.getPanes()
 
       for open_pane, i in open_panes
         continue if i is 0
@@ -128,7 +128,7 @@ module.exports =
   ###
 
   getCurrentPanes: ->
-    panes = atom.workspaceView.getPaneViews()
+    panes = atom.workspace.getPanes()
 
     return (pane for pane in panes)
 
@@ -154,7 +154,7 @@ module.exports =
   ###
 
   removeEmptyPanes: ->
-    panes = atom.workspaceView.getPaneViews()
+    panes = atom.workspace.getPanes()
 
     for pane, i in panes
       continue if i is 0
