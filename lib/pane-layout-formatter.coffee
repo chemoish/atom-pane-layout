@@ -159,4 +159,4 @@ module.exports =
     for pane, i in panes
       continue if i is 0
 
-      pane.remove() if pane.getItems().length is 0
+      pane.destroy() if pane.getItems().length is 0
