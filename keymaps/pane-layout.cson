@@ -7,14 +7,14 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-'.platform-darwin .atom-text-editor':
+'.platform-darwin atom-text-editor':
   'cmd-alt-1': 'pane-layout:column-1'
   'cmd-alt-2': 'pane-layout:column-2'
   'cmd-alt-3': 'pane-layout:column-3'
   'cmd-alt-4': 'pane-layout:column-4'
   'cmd-alt-5': 'pane-layout:square'
 
-'.platform-win32 .atom-text-editor, .platform-linux .atom-text-editor':
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
   'alt-shift-1': 'pane-layout:column-1'
   'alt-shift-2': 'pane-layout:column-2'
   'alt-shift-3': 'pane-layout:column-3'
