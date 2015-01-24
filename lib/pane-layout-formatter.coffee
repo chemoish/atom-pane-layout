@@ -34,7 +34,7 @@ module.exports =
       i++
 
   ###
-  @name Add Wintdow Panes
+  @name Add Window Panes
   @description
   Add a window panes to the given workspace.
 
@@ -66,48 +66,29 @@ module.exports =
 
     number_of_panes = open_panes.length
 
-    # get current active pane
-    active_item = atom.workspace.getActivePaneItem()
-
     # get current active item
-    active_item_uri = active_item?.getUri()
+    active_item_uri = atom.workspace.getActivePaneItem()?.getUri()
 
     # TODO: consider refactoring these methods
     if columns in [4, 5]
       new_pane_index = 3
 
-      @removeEmptyPanes()
+      @removeEmptyPanes(open_panes)
 
       @addWindowPanes() if columns is 5
 
       @addHorizontalPanes open_panes[0], 3 if columns is 4
 
-      panes = @getCurrentPanes()
-
-      for open_pane, i in open_panes
-        continue if i is 0
-
-        if i <= new_pane_index
-          @movePane open_pane, panes[i]
-        else
-          @movePane open_pane, panes[new_pane_index]
+      @moveOverflowPanesToPaneIndex(open_panes, new_pane_index)
 
     else if number_of_panes > columns
       new_pane_index = columns - 1
 
-      @removeEmptyPanes()
+      @removeEmptyPanes(open_panes)
 
       @addHorizontalPanes open_panes[0], new_pane_index
 
-      panes = atom.workspace.getPanes()
-
-      for open_pane, i in open_panes
-        continue if i is 0
-
-        if i <= new_pane_index
-          @movePane open_pane, panes[i]
-        else
-          @movePane open_pane, panes[new_pane_index]
+      @moveOverflowPanesToPaneIndex(open_panes, new_pane_index)
 
     else if columns > number_of_panes
       number_of_new_panes = columns - number_of_panes
@@ -128,9 +109,7 @@ module.exports =
   ###
 
   getCurrentPanes: ->
-    panes = atom.workspace.getPanes()
-
-    return (pane for pane in panes)
+    return atom.workspace.getPanes()
 
   ###
   @name Move Pane
@@ -144,8 +123,24 @@ module.exports =
   movePane: (current_pane, target_pane) ->
     items = current_pane.getItems()
 
+    return if items.length is 0
+
     for item in items
-      current_pane.moveItemToPane item, target_pane, target_pane.getItems().length
+      current_pane.moveItemToPane item, target_pane
+
+    current_pane.destroy();
+
+  moveOverflowPanesToPaneIndex: (open_panes, pane_index) ->
+    panes = @getCurrentPanes()
+
+    for open_pane, i in open_panes
+      # always skip first pane cause it is immutable
+      continue if i is 0
+
+      if (i <= pane_index)
+        @movePane open_pane, panes[i]
+      else
+        @movePane open_pane, panes[pane_index]
 
   ###
   @name Remove Empty Panes
@@ -153,9 +148,7 @@ module.exports =
   Remove an pane that does not contain any items.
   ###
 
-  removeEmptyPanes: ->
-    panes = atom.workspace.getPanes()
-
+  removeEmptyPanes: (panes) ->
     for pane, i in panes
       continue if i is 0
 
