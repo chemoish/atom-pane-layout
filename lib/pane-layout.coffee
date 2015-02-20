@@ -2,7 +2,7 @@ paneLayoutFormatter = require './pane-layout-formatter'
 
 module.exports =
   activate: ->
-    atom.commands.add 'atom-text-editor',
+    atom.commands.add 'atom-workspace',
       'pane-layout:column-1': => @layout 1
       'pane-layout:column-2': => @layout 2
       'pane-layout:column-3': => @layout 3
