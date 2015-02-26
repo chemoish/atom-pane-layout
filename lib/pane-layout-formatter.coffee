@@ -67,7 +67,7 @@ module.exports =
     number_of_panes = open_panes.length
 
     # get current active item
-    active_item_uri = atom.workspace.getActivePaneItem()?.getUri()
+    active_item_uri = atom.workspace.getActivePaneItem()?.getURI()
 
     # TODO: consider refactoring these methods
     if columns in [4, 5]
