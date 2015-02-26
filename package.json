@@ -1,7 +1,7 @@
 {
   "name": "pane-layout-plus",
   "main": "./lib/pane-layout",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Can has switch the layout of your panes.",
   "activationEvents": [
     "pane-layout:column-1",
