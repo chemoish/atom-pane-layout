@@ -10,11 +10,11 @@ module.exports =
   activateItem: (uri) ->
     return unless uri?
 
-    pane = atom.workspace.paneForUri uri
+    pane = atom.workspace.paneForURI uri
 
     pane.activate()
 
-    pane.activateItemForUri uri
+    pane.activateItemForURI uri
 
   ###
   @name Add Horizontal Panes
