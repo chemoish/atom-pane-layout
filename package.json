@@ -3,13 +3,15 @@
   "main": "./lib/pane-layout",
   "version": "0.6.7",
   "description": "Can has switch the layout of your panes.",
-  "activationEvents": [
-    "pane-layout:column-1",
-    "pane-layout:column-2",
-    "pane-layout:column-3",
-    "pane-layout:column-4",
-    "pane-layout:square"
-  ],
+  "activationCommands": {
+    "atom-workspace": [
+      "pane-layout:column-1",
+      "pane-layout:column-2",
+      "pane-layout:column-3",
+      "pane-layout:column-4",
+      "pane-layout:square"
+    ]
+  },
   "repository": "https://github.com/chemoish/atom-pane-layout",
   "license": "MIT",
   "engines": {
