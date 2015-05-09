@@ -9,5 +9,13 @@ module.exports =
       'pane-layout:column-4': => @layout 4
       'pane-layout:square': => @layout 5
 
+      'pane-layout-focus:column-1': => @focus 1
+      'pane-layout-focus:column-2': => @focus 2
+      'pane-layout-focus:column-3': => @focus 3
+      'pane-layout-focus:column-4': => @focus 4
+
+  focus: (column) ->
+    paneLayoutFormatter.focusPane column
+
   layout: (columns) ->
     paneLayoutFormatter.formatLayout columns

@@ -53,6 +53,15 @@ module.exports =
     open_panes[2].splitRight()
 
   ###
+  @name Focus Pane
+  @description
+  Update the currently focused pane.
+  ###
+
+  focusPane: (target_pane) ->
+    atom.workspace.getPanes()[target_pane - 1]?.focus()
+
+  ###
   @name Format Layout
   @description
   Format the pane layout based on the number of columns provided. Then select
