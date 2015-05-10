@@ -1,7 +1,7 @@
 {
   "name": "pane-layout-plus",
   "main": "./lib/pane-layout",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Can has switch the layout of your panes.",
   "activationCommands": {
     "atom-workspace": [
@@ -10,7 +10,6 @@
       "pane-layout:column-3",
       "pane-layout:column-4",
       "pane-layout:square",
-
       "pane-layout-focus:column-1",
       "pane-layout-focus:column-2",
       "pane-layout-focus:column-3",
