@@ -9,7 +9,12 @@
       "pane-layout:column-2",
       "pane-layout:column-3",
       "pane-layout:column-4",
-      "pane-layout:square"
+      "pane-layout:square",
+
+      "pane-layout-focus:column-1",
+      "pane-layout-focus:column-2",
+      "pane-layout-focus:column-3",
+      "pane-layout-focus:column-4"
     ]
   },
   "repository": "https://github.com/chemoish/atom-pane-layout",
