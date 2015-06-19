@@ -1,7 +1,7 @@
 {
   "name": "pane-layout-plus",
   "main": "./lib/pane-layout",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Can has switch the layout of your panes.",
   "activationCommands": {
     "atom-workspace": [
