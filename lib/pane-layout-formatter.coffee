@@ -118,7 +118,7 @@ module.exports =
   ###
 
   getCurrentPanes: ->
-    return atom.workspace.getPanes()
+    return atom.workspace.getCenter().getPanes()
 
   ###
   @name Move Pane
