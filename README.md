@@ -7,7 +7,7 @@ Focus and control the layout of your atom editor.
 | Command | Mac | PC and Linux |
 | --- | --- | --- |
 | Set the column layout | Cmd + Alt + [1-5] | Alt + Shift + [1-5] |
-|	Jump to column | Ctrl + [1-4] | Same |
+| Jump to column | Ctrl + [1-4] | Same |
 
 ## Demo
 
